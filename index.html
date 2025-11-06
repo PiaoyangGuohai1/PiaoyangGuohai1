@@ -1,10 +1,267 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <title>Hello Word</title>
-</head>
-<body>
-  <p>hello word！</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>飘洋过海 · 个人介绍</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg-start: #0f172a;
+        --bg-end: #1f2937;
+        --card-bg: rgba(15, 23, 42, 0.7);
+        --card-border: rgba(148, 163, 184, 0.2);
+        --accent: #38bdf8;
+        --accent-soft: rgba(56, 189, 248, 0.12);
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5f5;
+        --max-width: 960px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.15), transparent 45%),
+          linear-gradient(160deg, var(--bg-start), var(--bg-end));
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+      }
+
+      main {
+        width: 100%;
+        max-width: var(--max-width);
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(18px);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        padding: 64px 72px;
+        box-shadow: 0 30px 60px rgba(15, 23, 42, 0.45);
+        position: relative;
+        overflow: hidden;
+      }
+
+      main::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(56, 189, 248, 0.2), transparent 55%);
+        pointer-events: none;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: clamp(32px, 4vw, 56px);
+        margin: 0 0 18px;
+        line-height: 1.1;
+      }
+
+      .highlight {
+        display: inline-block;
+        padding: 0 12px;
+        border-radius: 12px;
+        background: rgba(56, 189, 248, 0.12);
+      }
+
+      p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      .intro {
+        max-width: 640px;
+        margin-bottom: 48px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-bottom: 48px;
+      }
+
+      .card {
+        position: relative;
+        padding: 28px;
+        border-radius: 20px;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(56, 189, 248, 0.45);
+        background: rgba(15, 23, 42, 0.85);
+      }
+
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      .card p {
+        font-size: 15px;
+      }
+
+      .card ul {
+        margin: 16px 0 0;
+        padding-left: 18px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .metric {
+        flex: 1 1 160px;
+        padding: 18px 20px;
+        border-radius: 16px;
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+      }
+
+      .metric span {
+        display: block;
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .metric strong {
+        font-size: 28px;
+      }
+
+      footer {
+        margin-top: 48px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        letter-spacing: 0.03em;
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 32px 16px;
+        }
+
+        main {
+          padding: 48px 32px;
+        }
+
+        .metrics {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="badge">GitHub 主页 · PiaoyangGuohai1</div>
+      <h1>你好，我是<span class="highlight">飘洋过海</span> 👋</h1>
+      <p class="intro">
+        这里是我的 GitHub 欢迎页。我热爱探索新技术，专注于构建优雅、可靠的解决方案，
+        并乐于将灵感和创意转化为实际作品。这个页面汇集了我近期的项目、关注的技术栈以及未来想要实现的目标。
+      </p>
+
+      <section class="grid">
+        <article class="card">
+          <h2>关于我</h2>
+          <p>
+            目前专注于全栈开发与开源探索，从设计到部署保持对体验与质量的追求。
+            我喜欢在项目中尝试新工具，并将最佳实践沉淀成自己的知识体系。
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>项目亮点</h2>
+          <p>我在 GitHub 上维护多个个人项目，涵盖前端体验、后台服务与自动化工具。</p>
+          <ul>
+            <li>注重代码可读性与可维护性</li>
+            <li>坚持持续迭代与高质量文档</li>
+            <li>欢迎 Issue 与 Pull Request</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>技术栈</h2>
+          <p>熟悉 JavaScript / TypeScript、Python 与云原生生态，常用工具包括：</p>
+          <ul>
+            <li>React、Vue、Tailwind CSS</li>
+            <li>Node.js、FastAPI、Express</li>
+            <li>Docker、GitHub Actions、Vercel</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>未来计划</h2>
+          <p>
+            正在筹备更多开放项目，记录开发随笔，并尝试通过数据可视化分享技术洞察，
+            期待与志同道合的朋友们一起成长。
+          </p>
+        </article>
+      </section>
+
+      <section class="metrics">
+        <div class="metric">
+          <span>开源项目</span>
+          <strong>15+</strong>
+        </div>
+        <div class="metric">
+          <span>社区互动</span>
+          <strong>持续更新</strong>
+        </div>
+        <div class="metric">
+          <span>年度目标</span>
+          <strong>分享与共创</strong>
+        </div>
+      </section>
+
+      <footer>
+        <div>📫 与我联系：请通过 GitHub Issues 或邮件保持沟通。</div>
+        <div>✨ 感谢访问，欢迎持续关注我的项目动向。</div>
+        <a href="https://github.com/PiaoyangGuohai1" target="_blank" rel="noopener">前往我的 GitHub</a>
+      </footer>
+    </main>
+  </body>
 </html>
